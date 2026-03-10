@@ -6,7 +6,7 @@ import SelectDemo from "../components/Select";
 const FormDemo = () => (
 	<Form.Root className="FormRoot">
 		{/* שם */}
-		<Form.Field className="FormField" name="email">
+		<Form.Field className="FormField" name="firstName">
 			<div
 				style={{
 					display: "flex",
@@ -29,7 +29,7 @@ const FormDemo = () => (
 		</Form.Field>
 
 		{/* שם משפחה */}
-		<Form.Field className="FormField" name="email">
+		<Form.Field className="FormField" name="lastName">
 			<div
 				style={{
 					display: "flex",
@@ -52,8 +52,7 @@ const FormDemo = () => (
 		</Form.Field>
 
 		{/* תחום */}
-	{/* אימייל */}
-		<Form.Field className="FormField" name="email">
+		<Form.Field className="FormField" name="studyField">
 			<div
 				style={{
 					display: "flex",
@@ -63,9 +62,6 @@ const FormDemo = () => (
 			>
 					<SelectDemo />
 			</div>
-			<Form.Control asChild>
-				<input className="Input" type="email" required />
-			</Form.Control>
 
 		</Form.Field>
 	
