@@ -10,7 +10,7 @@ const FormDemo = () => {
 	const doApi = async (data: Record<string, FormDataEntryValue>) => {
         try {
             // שולחים את המידע לשרת שניצור
-            const response = await axios.post("http://localhost:3000/api/submit", data);
+            const response = await axios.post("http://localhost:3000/submit", data);
             alert("נשלח בהצלחה!");
         } catch (error) {
             console.log("שגיאה:", error);
