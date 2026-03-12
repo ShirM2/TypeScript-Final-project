@@ -4,24 +4,25 @@ import './form.css';
 import SelectDemo from "../components/Select";
 import axios from 'axios';
 
+
 const FormDemo = () => {
 
-	// הפונקציה תהיה אחראית לשליחת המידע באמצעות אקסיוס
+	// פונקציה לניהול הקריאה לשרת וטיפול בתגובות/שגיאות
 	const doApi = async (data: Record<string, FormDataEntryValue>) => {
         try {
-            // שולחים את המידע לשרת שניצור
+            //  לשרת המקומי POST ביצוע בקשת
             const response = await axios.post("http://localhost:3000/submit", data);
             alert("נשלח בהצלחה!");
 
         } catch (error: any) {
-			
+
             console.log("שגיאה:", error);
 			const errorMessage = error.response?.data?.message || "קרתה שגיאה לא צפויה";
 			alert(errorMessage);
         }
     }
 
-	// פונקציה שתאסוף את המידע ותשלח אותו לפונקציה שתשלח את המידע
+	// ניהול אירוע שליחת הטופס (Submit)
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 
         event.preventDefault(); // פקודה שתפסיק את הרענון של העמוד אחרי שליחת הטופס
@@ -36,10 +37,8 @@ const FormDemo = () => {
 
 	
 	return(
-		
-		//  Radix הקטע קוד נלקח מהכלי
-		// Radix -> Primitives -> Form
-
+		// handleSubmit ברגע שהטופס יישלח נקרא לפונקציה
+		// טופס
 		<Form.Root className="FormRoot" onSubmit={handleSubmit}>
 
 			{/* שם */}
