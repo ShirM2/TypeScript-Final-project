@@ -5,7 +5,7 @@ const Thanks: React.FC = () => {
 
   const navigate = useNavigate();
 
-  // משתני עיצוב עקביים בשיטת Tailwind
+  // Tailwind -משתני עיצוב ל
   const containerClasses = "flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4 font-sans";
   const cardClasses = "bg-white p-10 rounded-2xl shadow-xl text-center max-w-lg border border-gray-100";
   const iconClasses = "bg-green-100 text-green-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl";
@@ -28,6 +28,7 @@ const Thanks: React.FC = () => {
         </p>
         
         <button
+        // ניווט חזרה לדף הבית
           onClick={() => navigate('/')}
           className={buttonClasses}
         >

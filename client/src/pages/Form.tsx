@@ -39,7 +39,7 @@ const FormDemo = () => {
         doApi(data);
     };
 
-    // מחלקות עיצוב קבועות לכיווץ הקוד
+    // Tailwind -משתני עיצוב ל
     const inputClasses = "inline-flex h-[35px] w-full items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none text-white shadow-[0_0_0_1px_rgba(0,0,0,0.3)] bg-black/20 hover:shadow-[0_0_0_1px_black] focus:shadow-[0_0_0_2px_black] focus:outline-none selection:bg-black/40 selection:text-white text-right";
     const labelClasses = "text-[15px] font-medium leading-[35px] text-black text-right";
     const messageClasses = "text-[13px] text-white opacity-80 text-right";
