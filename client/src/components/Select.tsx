@@ -8,7 +8,7 @@ import {
 } from "@radix-ui/react-icons";
 
 const SelectDemo = () => (
-    <Select.Root>
+    <Select.Root name="studyField">
         <Select.Trigger
             className="flex w-full h-[35px] items-center justify-center gap-[5px] rounded bg-white px-[15px] text-[13px] leading-none text-gray-900 shadow-[0_2px_10px] shadow-black/10 outline-none hover:bg-gray-100 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-gray-500"
             aria-label="Study Field"

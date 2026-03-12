@@ -12,8 +12,12 @@ const FormDemo = () => {
             // שולחים את המידע לשרת שניצור
             const response = await axios.post("http://localhost:3000/submit", data);
             alert("נשלח בהצלחה!");
-        } catch (error) {
+
+        } catch (error: any) {
+			
             console.log("שגיאה:", error);
+			const errorMessage = error.response?.data?.message || "קרתה שגיאה לא צפויה";
+			alert(errorMessage);
         }
     }
 
@@ -117,6 +121,29 @@ const FormDemo = () => {
 				</div>
 				<Form.Control asChild>
 					<input className="Input" type="email" required />
+				</Form.Control>
+
+			</Form.Field>
+
+			{/* טלפון */}
+			<Form.Field className="FormField" name="phone">
+				<div
+					style={{
+						display: "flex",
+						alignItems: "baseline",
+						justifyContent: "space-between",
+					}}
+				>
+					<Form.Label className="FormLabel"> טלפון </Form.Label>
+					<Form.Message className="FormMessage" match="valueMissing">
+						תכניס את הטלפון שלך
+					</Form.Message>
+					<Form.Message className="FormMessage" match="typeMismatch">
+						תכניס מספר טלפון תקין בבקשה
+					</Form.Message>
+				</div>
+				<Form.Control asChild>
+					<input className="Input" type="tel" required />
 				</Form.Control>
 
 			</Form.Field>
