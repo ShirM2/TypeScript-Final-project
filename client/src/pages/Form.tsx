@@ -3,16 +3,21 @@ import { Form } from "radix-ui";
 import './form.css';
 import SelectDemo from "../components/Select";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 
 const FormDemo = () => {
+
+	// הגדרת משתנה הניווט בתוך הקומפוננטה
+	const navigate = useNavigate();
 
 	// פונקציה לניהול הקריאה לשרת וטיפול בתגובות/שגיאות
 	const doApi = async (data: Record<string, FormDataEntryValue>) => {
         try {
             //  לשרת המקומי POST ביצוע בקשת
             const response = await axios.post("http://localhost:3000/submit", data);
-            alert("נשלח בהצלחה!");
+			console.log("תגובת השרת:", response.data);
+            navigate("/thanks"); // ניווט לדף התודה
 
         } catch (error: any) {
 
