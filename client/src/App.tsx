@@ -18,7 +18,7 @@ function App() {
         <Route path="/thanks" element={<Thanks />} />
 
         {/* נתיב ההתחברות לאדמין */}
-        <Route path="/login" element={<Login />} />
+        <Route path="/admin/login" element={<Login />} />
 
         {/* נתיב הדשבורד לאדמין */}
         <Route path="/admin/dashboard" element={<Dashboard />} />
