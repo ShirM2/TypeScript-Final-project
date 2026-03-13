@@ -42,7 +42,7 @@ const FormDemo = () => {
     // Tailwind -משתני עיצוב ל
     const inputClasses = "inline-flex h-[35px] w-full items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none text-white shadow-[0_0_0_1px_rgba(0,0,0,0.3)] bg-black/20 hover:shadow-[0_0_0_1px_black] focus:shadow-[0_0_0_2px_black] focus:outline-none selection:bg-black/40 selection:text-white text-right";
     const labelClasses = "text-[15px] font-medium leading-[35px] text-black text-right";
-    const messageClasses = "text-[13px] text-white opacity-80 text-right";
+    const messageClasses = "text-[13px] text-red-600 opacity-80 text-right";
     const fieldClasses = "mb-[10px] grid";
     const flexBetween = "flex items-baseline justify-between flex-row-reverse";
 
@@ -53,37 +53,28 @@ const FormDemo = () => {
 
             {/* שם */}
             <Form.Field className={fieldClasses} name="firstName">
-                <div className={flexBetween}>
-                    <Form.Label className={labelClasses}>שם</Form.Label>
-                    <Form.Message className={messageClasses} match="valueMissing">
-                        תכניס את השם שלך
-                    </Form.Message>
-                    <Form.Message className={messageClasses} match="typeMismatch">
-                        תכניס שם תקין בבקשה
-                    </Form.Message>
-                </div>
-                <Form.Control asChild>
-                    <input className={inputClasses} type="text" required />
-                </Form.Control>
-
-            </Form.Field>
+				<div className={flexBetween}>
+					<Form.Label className={labelClasses}>שם</Form.Label>
+					<Form.Message className={messageClasses} match="valueMissing">תכניס את השם שלך</Form.Message>
+					{/* הודעת שגיאה : אם השם קצר מ-2 אותיות */}
+					<Form.Message className={messageClasses} match="tooShort">השם חייב להכיל לפחות 2 אותיות</Form.Message>
+				</div>
+				<Form.Control asChild>
+					<input className={inputClasses} type="text" required minLength={2} />
+				</Form.Control>
+			</Form.Field>
 
             {/* שם משפחה */}
             <Form.Field className={fieldClasses} name="lastName">
-                <div className={flexBetween}>
-                    <Form.Label className={labelClasses}>שם משפחה</Form.Label>
-                    <Form.Message className={messageClasses} match="valueMissing">
-                        תכניס את שם המשפחה שלך
-                    </Form.Message>
-                    <Form.Message className={messageClasses} match="typeMismatch">
-                        תכניס שם משפחה תקין בבקשה
-                    </Form.Message>
-                </div>
-                <Form.Control asChild>
-                    <input className={inputClasses} type="text" required />
-                </Form.Control>
-
-            </Form.Field>
+				<div className={flexBetween}>
+					<Form.Label className={labelClasses}>שם משפחה</Form.Label>
+					<Form.Message className={messageClasses} match="valueMissing">תכניס את שם המשפחה שלך</Form.Message>
+					<Form.Message className={messageClasses} match="tooShort">שם המשפחה חייב להכיל לפחות 2 אותיות</Form.Message>
+				</div>
+				<Form.Control asChild>
+					<input className={inputClasses} type="text" required minLength={2} />
+				</Form.Control>
+			</Form.Field>
 
             {/* תחום */}
             <Form.Field className={fieldClasses} name="studyField">
@@ -112,20 +103,21 @@ const FormDemo = () => {
 
             {/* טלפון */}
             <Form.Field className={fieldClasses} name="phone">
-                <div className={flexBetween}>
-                    <Form.Label className={labelClasses}> טלפון </Form.Label>
-                    <Form.Message className={messageClasses} match="valueMissing">
-                        תכניס את הטלפון שלך
-                    </Form.Message>
-                    <Form.Message className={messageClasses} match="typeMismatch">
-                        תכניס מספר טלפון תקין בבקשה
-                    </Form.Message>
-                </div>
-                <Form.Control asChild>
-                    <input className={inputClasses} type="tel" required />
-                </Form.Control>
-
-            </Form.Field>
+				<div className={flexBetween}>
+					<Form.Label className={labelClasses}> טלפון </Form.Label>
+					<Form.Message className={messageClasses} match="valueMissing">תכניס את הטלפון שלך</Form.Message>
+					{/* הודעת שגיאה : אם זה לא תואם למספר טלפון תקני */}
+					<Form.Message className={messageClasses} match="patternMismatch">נא להזין מספר טלפון תקין (ספרות בלבד)</Form.Message>
+				</div>
+				<Form.Control asChild>
+					<input 
+						className={inputClasses} 
+						type="tel" 
+						required 
+						pattern="[0-9]{9,10}" // הגדרה: רק ספרות, באורך 9 או 10
+					/>
+				</Form.Control>
+			</Form.Field>
 
             <Form.Submit asChild>
                 <button className="mt-[10px] inline-flex h-[35px] w-full items-center justify-center rounded-[4px] bg-white px-[15px] text-[15px] font-medium leading-none text-violet-600 shadow-[0_2px_10px_rgba(0,0,0,0.2)] hover:bg-gray-100 focus:shadow-[0_0_0_2px_black] focus:outline-none">

@@ -15,10 +15,15 @@ const Login: React.FC = () => {
         try {
         // נשלח את הנתונים לשרת (נבנה את הנתיב הזה בשרת מיד אחרי)
         const resp = await axios.post("http://localhost:3000/admin/login", { username, password });
+
         
         if (resp.status === 200) {
-            // שומרים אישור זמני שהתחברנו בהצלחה
-            localStorage.setItem("adminAuth", "true");
+            
+            const token = resp.data.token;
+            
+            // שמירת הטוקן בזיכרון של הדפדפן
+            localStorage.setItem("adminToken", token);
+
             // מעבר לדף הניהול (שניצור בהמשך)
             navigate("/admin/dashboard");
         }

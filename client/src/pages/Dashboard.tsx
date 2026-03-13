@@ -28,8 +28,17 @@ const Dashboard: React.FC = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                // נקרא לנתיב
-                const resp = await axios.get("http://localhost:3000/admin/users");
+                // שליפת הטוקן ששמרנו בדפדפן
+                const token = localStorage.getItem("adminToken");
+
+                // נקרא לנתיב שיביא לנו את הרשימת המשתמשים
+                const resp = await axios.get("http://localhost:3000/admin/users", {
+                    headers: {
+                        // Bearer -> זה סוג של תווית זיהוי שבאמצעותו נוכל לזהות איזה סוג מפתח התקבל
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+
                 setUsers(resp.data); // נשמור את המידע ברשימה
             } catch (err) {
                 console.error("שגיאה במשיכת נתונים:", err);
