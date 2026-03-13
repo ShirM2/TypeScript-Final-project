@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { submitUser, adminLogin, getAllUsers } from "../controllers/userController.ts"; 
-import bcrypt from 'bcrypt'; 
-import { AdminModel } from '../models/admin.ts'; 
+
 
 export const router = Router();
 

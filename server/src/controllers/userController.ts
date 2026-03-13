@@ -6,7 +6,7 @@ import express from "express";
 type Request = express.Request;
 type Response = express.Response;
 
-const SECRET_KEY = "my_super_secret_key";
+
 
 // לוגיקה לרישום משתמש
 export const submitUser = async (req: Request, res: Response) => {
@@ -62,7 +62,7 @@ export const adminLogin = async (req: Request, res: Response) => {
 
         if (isMatch) {
             // ניתן טוקן לשעה
-            const token = jwt.sign({ role: "admin" }, SECRET_KEY, { expiresIn: "1h" });
+            const token = jwt.sign({ role: "admin" }, process.env.JWT_SECRET || "", { expiresIn: "1h" });
             return res.status(200).json({ token });
         } else {
             return res.status(401).json({ message: "שם משתמש או סיסמה שגויים" });
@@ -89,7 +89,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
     
         try {
             // אימות הטוקן
-            jwt.verify(token, SECRET_KEY);
+            jwt.verify(token, process.env.JWT_SECRET || "");
     
             // אם האימות הצליח - שולפים את המשתמשים
             const users = await UserModel.find();

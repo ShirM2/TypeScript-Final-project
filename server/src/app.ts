@@ -3,7 +3,10 @@ import cors from "cors";
 import mongoose from "mongoose";
 import bcrypt from 'bcrypt';
 import { AdminModel } from './models/admin.ts';
-import { router } from "./server/routes.ts"
+import { router } from "./server/routes.ts";
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const app = express();
 
@@ -25,9 +28,8 @@ const createInitialAdmin = async () => {
 };
 createInitialAdmin();
 
-// הגדרת הנתונים להפעלת השרת
-const PORT = 3000;
-const MONGO_URI = "mongodb://localhost:27017/react_bonus";
+const MONGO_URI = process.env.MONGO_URI || "";
+const PORT = process.env.PORT || 5000;
 
 // התחברות למסד הנתונים
 mongoose.connect(MONGO_URI)
